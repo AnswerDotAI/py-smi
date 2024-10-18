@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "py-smi"
+  site-url: "https://AnswerDotAI.github.io/py-smi"
+  description: "Convenient access to `pynvml` (the library behind `nvidia-smi`)"
+  repo-branch: main
+  repo-url: "https://github.com/AnswerDotAI/py-smi"
