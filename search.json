@@ -1,0 +1,73 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "py_smi",
+    "section": "",
+    "text": "Install latest from pypi:\n$ pip install python-smi\nLinks:\n\nrepo\ndocs\npypi",
+    "crumbs": [
+      "py_smi"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "py_smi",
+    "section": "",
+    "text": "Install latest from pypi:\n$ pip install python-smi\nLinks:\n\nrepo\ndocs\npypi",
+    "crumbs": [
+      "py_smi"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "py_smi",
+    "section": "How to use",
+    "text": "How to use\nHere’s a quick demo of all the methods available:\n\nfrom py_smi import NVML\n\n\nnv = NVML()\nnv.driver_version, nv.cuda_version\n\n('535.183.06', '12.2')\n\n\nAll methods have a single parameter, which is the index of the GPU to get information about.\n\nnv.info(0)\n\n_Info(name='NVIDIA RTX A6000', serial='1322123048138', uuid='GPU-61e56e6f-2a64-c0f4-b26c-ab3ead0eed5b', persistence_mode=1, bus_id='00000000:01:00.0', display_active=0, performance_state=8, fan_speed=30, temperature=32, compute_mode=0)\n\n\n\n[nv.mem(i) for i in range(3)]\n\n[_Memory(free=2193.25, total=49140.0, used=46946.75),\n _Memory(free=48672.4375, total=49140.0, used=467.5625),\n _Memory(free=48672.4375, total=49140.0, used=467.5625)]\n\n\nThe index defaults to 0.\n\nnv.utilization()\n\n_Utilization(gpu=0, memory=0, enc=0, dec=0)\n\n\n\nnv.power()\n\n_Power(usage=17.22, limit=300.0)\n\n\n\nnv.clocks()\n\n_Clocks(graphics=0, sm=0, mem=405)\n\n\n\nnv.pcie_throughput()\n\n_PCIeThroughput(rx=0.0, tx=0.0)\n\n\n\nnv.processes()\n\n[_ProcessInfo(pid=201084, name='/home/jhoward/miniconda3/bin/python3.12', memory=46476.0)]\n\n\n\nnv.dmon()\n\n_DMon(pwr=17.039, gtemp=32, sm=0, mem=0, enc=0, dec=0, mclk=405, pclk=0)",
+    "crumbs": [
+      "py_smi"
+    ]
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "py_smi",
+    "section": "Contributing",
+    "text": "Contributing\nI’ve added the obvious pieces based on how I use nvidia-smi, but I’m sure there’s missing useful features, so PRs are welcome! Note that this is an nbdev project so the source notebooks must be changed, rather than editing .py or .md files directly.",
+    "crumbs": [
+      "py_smi"
+    ]
+  },
+  {
+    "objectID": "CHANGELOG.html",
+    "href": "CHANGELOG.html",
+    "title": "Release notes",
+    "section": "",
+    "text": "add readme\n\n\n\n\n\ninitial version"
+  },
+  {
+    "objectID": "CHANGELOG.html#section",
+    "href": "CHANGELOG.html#section",
+    "title": "Release notes",
+    "section": "",
+    "text": "add readme"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-1",
+    "href": "CHANGELOG.html#section-1",
+    "title": "Release notes",
+    "section": "",
+    "text": "initial version"
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "API",
+    "section": "",
+    "text": "source\n\nNVML\n\n NVML ()\n\nConvenient access to pynvml (the library behind nvidia-smi)\n\nnv = NVML()\nnv.driver_version, nv.cuda_version\n\n('535.183.06', '12.2')\n\n\n\nhandle = nv[0]\nnvmlDeviceGetName(handle)\n\n'NVIDIA RTX A6000'\n\n\n\nsource\n\n\nNVML.info\n\n NVML.info (i:int=0)\n\nBasic information about GPU i\n\nnv.info(0)\n\n_Info(name='NVIDIA RTX A6000', serial='1322123048138', uuid='GPU-61e56e6f-2a64-c0f4-b26c-ab3ead0eed5b', persistence_mode=1, bus_id='00000000:01:00.0', display_active=0, performance_state=8, fan_speed=30, temperature=31, compute_mode=0)\n\n\n\nsource\n\n\nNVML.mem\n\n NVML.mem (i:int=0)\n\nMemory total/free/used for GPU i, in MB\n\nnv.mem(0)\n\n_Memory(free=2193.25, total=49140.0, used=46946.75)\n\n\n\nsource\n\n\nNVML.utilization\n\n NVML.utilization (i:int=0)\n\n% of time during which GPU i was actively using various components\n\nnv.utilization(0)\n\n_Utilization(gpu=0, memory=0, enc=0, dec=0)\n\n\n\nsource\n\n\nNVML.power\n\n NVML.power (i:int=0)\n\nGet power usage and limit for GPU i in watts\n\nnv.power(0)\n\n_Power(usage=16.866, limit=300.0)\n\n\nHere “limit” refers to the maximum power draw allowed for the GPU.\n\nsource\n\n\nNVML.clocks\n\n NVML.clocks (i:int=0)\n\nGet current clock speeds (in MHz) for GPU i\n\nnv.clocks(0)\n\n_Clocks(graphics=0, sm=0, mem=405)\n\n\n\nsource\n\n\nNVML.pcie_throughput\n\n NVML.pcie_throughput (i:int=0)\n\nGet PCIe throughput (in KB/s) for GPU i\n\nnv.pcie_throughput(0)\n\n_PCIeThroughput(rx=0.0, tx=0.0)\n\n\n\n“rx” represents receive - data flowing from the motherboard to the GPU.\n“tx” represents transmit - data flowing from the GPU to the motherboard.\n\n\nsource\n\n\nNVML.processes\n\n NVML.processes (i:int=0)\n\nGet information about processes running on GPU i\n\nnv.processes(0)\n\n[_ProcessInfo(pid=201084, name='/home/jhoward/miniconda3/bin/python3.12', memory=46476.0)]\n\n\n\nsource\n\n\nNVML.dmon\n\n NVML.dmon (i:int=0)\n\nGet key monitoring metrics for GPU i, similar to nvidia-smi dmon\n\nnv.dmon(0)\n\n_DMon(pwr=16.866, gtemp=31, sm=0, mem=0, enc=0, dec=0, mclk=405, pclk=0)",
+    "crumbs": [
+      "API"
+    ]
+  }
+]
